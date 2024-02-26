@@ -11,21 +11,21 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
-import environ
+# import environ
 import os
 import dj_database_url
 
 # env = environ.Env()
-env = environ.Env(DEBUG=(bool, False))
+# env = environ.Env(DEBUG=(bool, False))
 
 
 # Set the project base directory
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Take environment variables from .env file
-environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
+# environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-# BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -114,12 +114,12 @@ WSGI_APPLICATION = 'payment_bnk.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
 
 # DATABASES = {
 #     'default': {
@@ -133,16 +133,16 @@ WSGI_APPLICATION = 'payment_bnk.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': os.environ.get("ENGINE"),
-        'NAME': os.environ.get("NAME"),
-        'USER': os.environ.get("USER"),
-        'PASSWORD': os.environ.get("PASSWORD"),
-        'HOST': os.environ.get("HOST"),
-        'PORT': os.environ.get("PORT"),
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.environ.get("ENGINE"),
+#         'NAME': os.environ.get("NAME"),
+#         'USER': os.environ.get("USER"),
+#         'PASSWORD': os.environ.get("PASSWORD"),
+#         'HOST': os.environ.get("HOST"),
+#         'PORT': os.environ.get("PORT"),
+#     }
+# }
 
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
