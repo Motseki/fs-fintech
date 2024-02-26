@@ -1,0 +1,1615 @@
+{% extends "partials/base.html" %}  
+{% block content %}
+{% load static %}
+
+
+
+{% if request.user.is_authenticated %}
+
+      <!-- Banner Section start -->
+      <section class="banner-section index">
+      
+        <!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finstack - Money Transfer and Online Payments Dashboard HTML Template</title>
+
+    <link rel="shortcut icon" href="{% static 'assets/images/fav.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugin/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugin/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugin/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/arafat-font.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/plugin/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+    <link rel="shortcut icon" href="{% static 'assets11/images/fav.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'assets1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/plugin/apexcharts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/plugin/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/arafat-font.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/plugin/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/style.css' %}">
+</head>
+
+<body>
+
+    <a href="javascript:void(0)" class="scrollToTop"><i class="fas fa-angle-double-up"></i></a>
+
+     <!-- header-section start -->
+     <header class="header-section body-collapse">
+        <div class="overlay">
+            <div class="container-fruid">
+                <div class="row d-flex header-area">
+                    <div class="navbar-area d-flex align-items-center justify-content-between">
+                        <div class="sidebar-icon">
+                            <img src="{% static 'assets1/images/icon/menu.png' %}" alt="icon">
+                        </div>
+                        <form method="POST" class="flex-fill">
+                            
+                            <div class="form-group d-flex align-items-center">
+                                <img src="{% static 'assets1/images/icon/search.png' %}" alt="icon">
+                                <input type="text" placeholder="Type to search...">
+                            </div>
+                        </form>
+                        <div class="dashboard-nav">
+                            <div class="single-item language-area">
+                                <div class="language-btn">
+                                    <img src="{% static 'assets1/images/icon/lang.png' %}" alt="icon">
+                                </div>
+                                <ul class="main-area language-content">
+                                    <li>English</li>
+                                    <li>Hindi</li>
+                                    <li class="active">English (US)</li>
+                                    <li>Japanese</li>
+                                    <li>Kannada</li>
+                                    <li>Lithuanian</li>
+                                </ul>
+                            </div>
+                            <div class="single-item notifications-area">
+                                <div class="notifications-btn">
+                                    <img src="{% static 'assets1/images/icon/bell.png' %}" class="bell-icon" alt="icon">
+                                </div>
+                                <div class="main-area notifications-content">
+                                    <div class="head-area d-flex justify-content-between">
+                                        <h5>Notifications</h5>
+                                        <span class="mdr">{{ notifications.count }}</span>
+                                    </div>
+                                    <ul>
+                                        {% for n in notifications %}
+                                        <li>
+                                            
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="text-area">
+                                                    
+                                                    {% if n.notification_type == "Credit Alert" %}
+                                                    <p class="mdr">You received a payment of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Debit Alert" %}
+                                                    <p class="mdr">You sent a payment of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Sent Payment Request" %}
+                                                    <p class="mdr">You sent a <b>payment request</b> of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Recieved Payment Request" %}
+                                                    <p class="mdr">You received a <b>payment request</b> of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Funded Credit Card" %}
+                                                    <p class="mdr">You funded your credit card with <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Withdrew Credit Card Funds" %}
+                                                    <p class="mdr">You withdrew <b>${{n.amount}}</b> from your credit card</p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Deleted Credit Card" %}
+                                                    <p class="mdr">You deleted your credit card</p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Added Credit Card" %}
+                                                    <p class="mdr">You added a new  credit card</p>
+                                                    {% endif %}
+                                                        
+                                                    <p class="mdr time-area">{{n.date}}</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li>
+                                        {% endfor %}
+
+                                        <!-- <li>
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="img-area">
+                                                    <img src="{% static 'assets1/images/user-2.png' %}" class="max-un" alt="image">
+                                                </div>
+                                                <div class="text-area">
+                                                    <p class="mdr"><b>James Deed</b> requested a payment of
+                                                        <b>£890.00</b>
+                                                    </p>
+                                                    <p class="mdr time-area">08.09AM</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="img-area">
+                                                    <img src="{% static 'assets1/images/master-card.png' %}" class="max-un" alt="image">
+                                                </div>
+                                                <div class="text-area">
+                                                    <p class="mdr">Your new payment method has beed added successfully
+                                                    </p>
+                                                    <p class="mdr time-area">09.39AM</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="img-area">
+                                                    <img src="{% static 'assets1/images/user-3.png' %}" class="max-un" alt="image">
+                                                </div>
+                                                <div class="text-area">
+                                                    <p class="mdr">You received a payment of <b>$250.00</b> from Goerge
+                                                        Michael</p>
+                                                    <p class="mdr time-area">Yesterday</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="single-item user-area">
+                                <div class="profile-area d-flex align-items-center">
+                                    <span class="user-profile">
+                                        <!-- <img src="{% static 'assets1/images/avatar.png' %}" alt="User"> -->
+                                        {% if request.user.kyc.image.url %}
+                                            <img style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="image">
+                                        {% else %}
+                                            <img src="{% static 'assets1/images/default.jpg' %}"  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="">
+                                        {% endif %}
+                                    <!-- <img style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" src="{{ kyc.image.url }}" alt="image"> -->
+
+                                    </span>
+                                    <i class="fa-solid fa-sort-down"></i>
+                                </div>
+                                <div class="main-area user-content">
+                                    <div class="head-area d-flex align-items-center">
+                                        <div class="profile-img">
+                                            <!-- <img src="{% static 'assets1/images/avatar-2.png' %}" alt="User"> -->
+                                            
+                                            {% if request.user.kyc.image.url %}
+                                            <img style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="image">
+                                            {% else %}
+                                            <img src="{% static 'assets1/images/default.jpg' %}"  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="">
+                                            {% endif %}
+                                                
+
+                                        </div>
+                                        <div class="profile-head">
+                                            <a href="{% url 'account:account' %}">
+                                                <h5>{{kyc.full_name|title}}</h5>
+                                            </a>
+                                            <p class="wallet-id"><small>Account No. {{ request.user.account.account_number }}</small></p>
+                                            <p class="wallet-id"><small>Pin No. {{ request.user.account.pin_number }}</small></p>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li class="border-area">
+                                            <a href="{% url 'account:dashboard' %}"><i class="fas fa-user"></i>Dashboard</a>
+                                        </li>
+                                        <li class="border-area">
+                                            <a href="javascript:void(0)"><i class="fas fa-cog"></i>Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'userauths:sign-out' %}"><i class="fas fa-sign-out"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-wrapper">
+                        <div class="close-btn">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <div class="sidebar-logo">
+                            <a href="{% url 'account:dashboard' %}"><img src="{% static 'assets1/images/logo.png' %}" alt="logo"></a>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="{% url 'account:dashboard' %}">
+                                    <img src="{% static 'assets1/images/icon/dashboard.png' %}" alt="Dashboard"> <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'core:transactions' %}">
+                                    <img src="{% static 'assets1/images/icon/transactions.png' %}" alt="Transactions"> <span>Transactions</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="{% url 'core:search-account' %}">
+                                    <img src="{% static 'assets1/images/icon/pay.png' %}" alt="Pay"> <span>Pay</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="{% url 'core:request-search-account' %}">
+                                    <img src="{% static 'assets1/images/icon/receive.png' %}" alt="Receive"> <span>Receive</span>
+                                </a>
+                            </li> -->
+                             <li>
+                                <a href="{% url 'account:money-exchange' %}">
+                                    <img src="{% static 'assets1/images/icon/exchange.png' %}" alt="Exchange"> <span>Exchange</span>
+                                </a>
+                            </li> 
+                            
+                            <!-- Edit end -->
+
+                            <!-- <li>
+                                <a href="recipients.html">
+                                    <img src="{% static 'assets1/images/icon/recipients.png' %}" alt="Recipients"> <span>Recipients</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="crypto.html">
+                                    <img src="{% static 'assets1/images/icon/crypto.png' %}" alt="Crypto"> <span>Crypto</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="deposit-money.html">
+                                    <img src="{% static 'assets1/images/icon/deposit.png' %}" alt="Deposit"> <span>Deposit Money</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="withdraw-money-step-1.html">
+                                    <img src="{% static 'assets1/images/icon/withdraw.png' %}" alt="Withdraw"> <span>Withdraw Money</span>
+                                </a>
+                            </li> -->
+                        </ul>
+                        <ul class="bottom-item">
+                            <li class="active">
+                                <a href="{% url 'account:account' %}">
+                                    <img src="{% static 'assets1/images/icon/account.png' %}" alt="Account"> <span>Account</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="{% static 'assets1/images/icon/support.png' %}" alt="Support"> <span>Support</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="{% static 'assets1/images/icon/quit.png' %}" alt="Quit"> <span>Quit</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="pt-120">
+                            <div class="invite-now">
+                                <div class="img-area">
+                                    <img src="{% static 'assets1/images/invite-now-illus.png' %}" alt="Image">
+                                </div>
+                                <p>Invite your friend and get $25</p>
+                                <a href="javascript:void(0)" class="cmn-btn">Invite Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- alert start -->
+        
+        {% if messages %}
+            {% for m in messages %}
+            <div class="alert alert-{{m.tags}}">
+                <strong>{{m}}</strong>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <script>
+            setTimeout (() => {
+                $(".alert").alert("close");
+            }, 4000)
+        </script>
+        
+        <!-- alert end -->
+        
+
+    </header>
+    <!-- header-section end -->
+
+    <!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Finstack - Money Transfer and Online Payments Dashboard HTML Template</title>
+
+    <link rel="shortcut icon" href="{% static 'assets11/images/fav.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="{% static 'assets1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/jquery-ui.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/plugin/apexcharts.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/plugin/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/arafat-font.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/plugin/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets1/css/style.css' %}">
+</head>
+
+<body>
+    <!-- start preloader -->
+    <!-- <div class="preloader" id="preloader"></div> -->
+    <!-- end preloader -->
+
+    <!-- Scroll To Top Start-->
+    <a href="javascript:void(0)" class="scrollToTop"><i class="fas fa-angle-double-up"></i></a>
+    <!-- Scroll To Top End -->
+
+    <!-- header-section start -->
+    <header class="header-section body-collapse">
+        <div class="overlay">
+            <div class="container-fruid">
+                <div class="row d-flex header-area">
+                    <div class="navbar-area d-flex align-items-center justify-content-between">
+                        <div class="sidebar-icon">
+                            <img src="{% static 'assets1/images/icon/menu.png' %}" alt="icon">
+                        </div>
+                        <form method="POST" class="flex-fill">
+                            
+                            <div class="form-group d-flex align-items-center">
+                                <img src="{% static 'assets1/images/icon/search.png' %}" alt="icon">
+                                <input type="text" placeholder="Type to search...">
+                            </div>
+                        </form>
+                        <div class="dashboard-nav">
+                            <div class="single-item language-area">
+                                <div class="language-btn">
+                                    <img src="{% static 'assets1/images/icon/lang.png' %}" alt="icon">
+                                </div>
+                                <ul class="main-area language-content">
+                                    <li>English</li>
+                                    <li>Hindi</li>
+                                    <li class="active">English (US)</li>
+                                    <li>Japanese</li>
+                                    <li>Kannada</li>
+                                    <li>Lithuanian</li>
+                                </ul>
+                            </div>
+                            <div class="single-item notifications-area">
+                                <div class="notifications-btn">
+                                    <img src="{% static 'assets1/images/icon/bell.png' %}" class="bell-icon" alt="icon">
+                                </div>
+                                <div class="main-area notifications-content">
+                                    <div class="head-area d-flex justify-content-between">
+                                        <h5>Notifications</h5>
+                                        <span class="mdr">{{ notifications.count }}</span>
+                                    </div>
+                                    <ul>
+                                        {% for n in notifications %}
+                                        <li>
+                                            
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="text-area">
+                                                    
+                                                    {% if n.notification_type == "Credit Alert" %}
+                                                    <p class="mdr">You received a payment of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Debit Alert" %}
+                                                    <p class="mdr">You sent a payment of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Sent Payment Request" %}
+                                                    <p class="mdr">You sent a <b>payment request</b> of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Recieved Payment Request" %}
+                                                    <p class="mdr">You received a <b>payment request</b> of <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Funded Credit Card" %}
+                                                    <p class="mdr">You funded your credit card with <b>${{n.amount}}</b></p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Withdrew Credit Card Funds" %}
+                                                    <p class="mdr">You withdrew <b>${{n.amount}}</b> from your credit card</p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Deleted Credit Card" %}
+                                                    <p class="mdr">You deleted your credit card</p>
+                                                    {% endif %}
+                                                    {% if n.notification_type == "Added Credit Card" %}
+                                                    <p class="mdr">You added a new  credit card</p>
+                                                    {% endif %}
+                                                        
+                                                    <p class="mdr time-area">{{n.date}}</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li>
+                                        {% endfor %}
+
+                                        <!-- <li>
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="img-area">
+                                                    <img src="{% static 'assets1/images/user-2.png' %}" class="max-un" alt="image">
+                                                </div>
+                                                <div class="text-area">
+                                                    <p class="mdr"><b>James Deed</b> requested a payment of
+                                                        <b>£890.00</b>
+                                                    </p>
+                                                    <p class="mdr time-area">08.09AM</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="img-area">
+                                                    <img src="{% static 'assets1/images/master-card.png' %}" class="max-un" alt="image">
+                                                </div>
+                                                <div class="text-area">
+                                                    <p class="mdr">Your new payment method has beed added successfully
+                                                    </p>
+                                                    <p class="mdr time-area">09.39AM</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)" class="d-flex">
+                                                <div class="img-area">
+                                                    <img src="{% static 'assets1/images/user-3.png' %}" class="max-un" alt="image">
+                                                </div>
+                                                <div class="text-area">
+                                                    <p class="mdr">You received a payment of <b>$250.00</b> from Goerge
+                                                        Michael</p>
+                                                    <p class="mdr time-area">Yesterday</p>
+                                                </div>
+                                            </a>
+                                            <i class="fa-solid fa-caret-right"></i>
+                                        </li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="single-item user-area">
+                                <div class="profile-area d-flex align-items-center">
+                                    <span class="user-profile">
+                                        <!-- <img src="{% static 'assets1/images/avatar.png' %}" alt="User"> -->
+                                        {% if request.user.kyc.image.url %}
+                                            <img style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="image">
+                                        {% else %}
+                                            <img src="{% static 'assets1/images/default.jpg' %}"  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="">
+                                        {% endif %}
+                                    <!-- <img style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;" src="{{ kyc.image.url }}" alt="image"> -->
+
+                                    </span>
+                                    <i class="fa-solid fa-sort-down"></i>
+                                </div>
+                                <div class="main-area user-content">
+                                    <div class="head-area d-flex align-items-center">
+                                        <div class="profile-img">
+                                            <!-- <img src="{% static 'assets1/images/avatar-2.png' %}" alt="User"> -->
+                                            
+                                            {% if request.user.kyc.image.url %}
+                                            <img style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover;" src="{{ request.user.kyc.image.url }}" alt="image">
+                                            {% else %}
+                                            <img src="{% static 'assets1/images/default.jpg' %}"  style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" alt="">
+                                            {% endif %}
+                                                
+
+                                        </div>
+                                        <div class="profile-head">
+                                            <a href="{% url 'account:account' %}">
+                                                <h5>{{kyc.full_name|title}}</h5>
+                                            </a>
+                                            <p class="wallet-id"><small>Account No. {{ request.user.account.account_number }}</small></p>
+                                            <p class="wallet-id"><small>Pin No. {{ request.user.account.pin_number }}</small></p>
+                                        </div>
+                                    </div>
+                                    <ul>
+                                        <li class="border-area">
+                                            <a href="{% url 'account:dashboard' %}"><i class="fas fa-user"></i>Dashboard</a>
+                                        </li>
+                                        <li class="border-area">
+                                            <a href="javascript:void(0)"><i class="fas fa-cog"></i>Settings</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'userauths:sign-out' %}"><i class="fas fa-sign-out"></i>Logout</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sidebar-wrapper">
+                        <div class="close-btn">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                        <div class="sidebar-logo">
+                            <!-- <a href="{% url 'account:dashboard' %}"><img src="{% static 'assets1/images/logo.png' %}" alt="logo"></a> -->
+                            <a class="navbar-brand" href="index.html">
+                                <!-- <img src="{% static 'assets/images/logo.png' %}" class="logo" alt="logo">  -->
+                                <img src="{% static 'assets/images/finstack.JPEG' %}" class="logo1"  alt="logo" width="110" height="100" >
+                            </a>
+                        </div>
+                        <ul>
+                            <li>
+                                <a href="{% url 'account:dashboard' %}">
+                                    <img src="{% static 'assets1/images/icon/dashboard.png' %}" alt="Dashboard"> <span>Dashboard</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{% url 'core:transactions' %}">
+                                    <img src="{% static 'assets1/images/icon/transactions.png' %}" alt="Transactions"> <span>Transactions</span>
+                                </a>
+                            </li>
+                            <!-- <li>
+                                <a href="{% url 'core:search-account' %}">
+                                    <img src="{% static 'assets1/images/icon/pay.png' %}" alt="Pay"> <span>Pay</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="{% url 'core:request-search-account' %}">
+                                    <img src="{% static 'assets1/images/icon/receive.png' %}" alt="Receive"> <span>Receive</span>
+                                </a>
+                            </li> -->
+                             <li>
+                                <a href="{% url 'account:money-exchange' %}">
+                                    <img src="{% static 'assets1/images/icon/exchange.png' %}" alt="Exchange"> <span>Exchange</span>
+                                </a>
+                            </li> 
+                            
+                            <!-- Edit end -->
+
+                            <!-- <li>
+                                <a href="recipients.html">
+                                    <img src="{% static 'assets1/images/icon/recipients.png' %}" alt="Recipients"> <span>Recipients</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="crypto.html">
+                                    <img src="{% static 'assets1/images/icon/crypto.png' %}" alt="Crypto"> <span>Crypto</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="deposit-money.html">
+                                    <img src="{% static 'assets1/images/icon/deposit.png' %}" alt="Deposit"> <span>Deposit Money</span>
+                                </a>
+                            </li> -->
+                            <!-- <li>
+                                <a href="withdraw-money-step-1.html">
+                                    <img src="{% static 'assets1/images/icon/withdraw.png' %}" alt="Withdraw"> <span>Withdraw Money</span>
+                                </a>
+                            </li> -->
+                        </ul>
+                        <ul class="bottom-item">
+                            <li class="active">
+                                <a href="{% url 'account:account' %}">
+                                    <img src="{% static 'assets1/images/icon/account.png' %}" alt="Account"> <span>Account</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="{% static 'assets1/images/icon/support.png' %}" alt="Support"> <span>Support</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0)">
+                                    <img src="{% static 'assets1/images/icon/quit.png' %}" alt="Quit"> <span>Quit</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="pt-120">
+                            <div class="invite-now">
+                                <div class="img-area">
+                                    <img src="{% static 'assets1/images/invite-now-illus.png' %}" alt="Image">
+                                </div>
+                                <p>Invite your friend and get $25</p>
+                                <a href="javascript:void(0)" class="cmn-btn">Invite Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- alert start -->
+        
+        {% if messages %}
+            {% for m in messages %}
+            <div class="alert alert-{{m.tags}}">
+                <strong>{{m}}</strong>
+            </div>
+            {% endfor %}
+        {% endif %}
+        <script>
+            setTimeout (() => {
+                $(".alert").alert("close");
+            }, 4000)
+        </script>
+        
+        <!-- alert end -->
+        
+
+    </header>
+    <!-- header-section end -->
+    <!-- Banner Section start -->
+    <section class="banner-section index">
+        <div class="overlay">
+            <div class="shape-area">
+                <img src="{% static 'assets/images/banner-box.png' %}" class="obj-1" alt="image">
+                <img src="{% static 'assets/images/banner-human.png' %}" class="obj-2" alt="image">
+                <img src="{% static 'assets/images/banner-rocket.png' %}" class="obj-3" alt="image">
+                <img src="{% static 'assets/images/banner-clock.png' %}" class="obj-4" alt="image">
+            </div>  
+            <div class="banner-content">
+                <div class="container wow fadeInUp">
+                    <div class="content-shape">
+                        <img src="{% static 'assets/images/banner-wallet.png' %}" class="obj-1" alt="image">
+                    </div> 
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-lg-5 col-md-6">
+                            <div class="main-content">
+                                <!-- <div class="top-area section-text">
+                                    <h5 class="sub-title">Trusted by over 3M customers</h5>
+                                    <h1 class="title">Pay Anyone, Anywhere</h1>
+                                    <p class="xlr">Quickly and easily send, receive and request money online with Paylio. Get a customised solution to fit your business needs.</p>
+                                </div> -->
+                                <!-- <div class="bottom-area d-xxl-flex">
+                                    <a href="sign-up.html" class="cmn-btn">Open a Free Account</a>
+                                    <a class="cmn-btn active mfp-iframe popupvideo" href="https://www.youtube.com/watch?v=Djz8Nc0Qxwk">See How it Works</a>
+                                </div> -->
+                            </div>
+                        </div> 
+    
+    
+    
+                      
+                            
+                        <div class="col-xxl-4 col-xl-5 col-md-6">
+                            <div class="send-money">
+                                  <!-- <form action="#"> -->
+
+                                    <h4  class="single-area d-flex align-items-center justify-content-center">Convert</h4>
+                                
+                                    <form method="post" action="#"> 
+                                        {% csrf_token %}
+                                        <!-- Amount input -->
+                                        <div class="select-text">
+                                            <input  name="amount" type="text" value="0.00">
+                                        </div>
+                                    <br>
+                                    <div class="select-wrapper">
+                                        <!-- From options -->
+                                     <div class="currency-area">
+                                        <div class="left-side">
+                                            <span class="mdr">You send</span>
+                                            <!-- <h5>1,000</h5> -->
+                                            <h6>
+                                              {{ amount }} {{ currency_from }}
+                                           </h6>
+                                        </div>
+                                        <div class="right-side">
+                                            <!-- <select>
+                                                <option value="1">USD</option>
+                                                <option value="2">GBP</option>
+                                                <option value="3">AUS</option>
+                                            </select> -->
+                                            <select name="currency_from" class="select">
+                                              {% for c in currency_data %}
+                                              <option value="{{c.cc}}">{{c.name}}</option>
+                                              {% endfor %}
+                                           </select>
+                                        </div>
+                                      </div>
+                                      <div class="calculation">
+                                        <div class="head-area">
+                                            <img src="{% static 'assets/images/icon/conversion.png' %}" alt="image">
+                                            <span class="mdr highlight">Show calculation</span>
+                                        </div>
+                                        <div class="calculation-details">
+                                            <div class="single-area d-flex align-items-center">
+                                                <div class="left-area">
+                                                    <i class="fas fa-minus"></i>
+                                                    <span class="mdr">FREE</span>
+                                                </div>
+                                                <div class="right-area">
+                                                    <span class="mdr">Our fee</span>
+                                                </div>
+                                            </div>
+                                            <div class="single-area d-flex align-items-center">
+                                                <div class="left-area">
+                                                    <i class="fas fa-equals"></i>
+                                                    <span class="mdr">
+                                                       <!-- 989.96 USD -->
+                                                       {{ amount }} {{ currency_from }}
+                                                    </span>
+                                                </div>
+                                                <div class="right-area">
+                                                    <span class="mdr">We’ll Convert</span>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="single-area d-flex align-items-center">
+                                                <div class="left-area">
+                                                    <i class="fas fa-times"></i>
+                                                    <span class="mdr">1.3947</span>
+                                                </div>
+                                                <div class="right-area">
+                                                    <span class="mdr highlight">Finstack Rate</span>
+                                                </div>
+                                            </div> -->
+                                        </div>
+                                    </div>
+                            
+                                    <div class="currency-area">
+                                     <div class="left-side">
+                                         <span class="mdr">Recipient gets</span>
+                                         <!-- <h5>1,380.69</h5> -->
+                                         <h5>{{ result }} {{ currency_to }}</h5>
+                                     </div>
+                                     <div class="right-side recipient">
+                                         <select name="currency_to" class="select">
+                                           {% for c in currency_data %}
+                                           <option value="{{c.cc}}">{{c.name}}</option>
+                                           {% endfor %}
+                                        </select>
+                                     </div>
+                                 </div>
+                             
+                                              </div>
+                                              <br> 
+
+                                              <div class="select-submit">
+                                                <input class="cmn-btn w-100" type="submit" value="Convert">
+                                             </div>
+                                             
+                                             <!-- <div class="btn-area mt-40">
+                                                <a href="{% url 'userauths:sign-in' %}" class="login cmn-btn w-100">Get Started</a>
+                                            </div> -->
+    
+                                   
+                                </form> 
+                            </div>
+                        </div> 
+                    
+    
+    
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- <div class="counter-section">
+            <div class="container wow fadeInUp">
+                <div class="row cus-mar">
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">50</span><span>+</span></h2>
+                                <p>Supported Currencies</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">100</span><span>+</span></h2>
+                                <p>Available Countries</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">70</span><span>+</span></h2>
+                                <p>Payment Methods</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">7</span><span>/</span><span class="counter">24</span><span>+</span></h2>
+                                <p>Support Team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+    <!-- Banner Section end -->
+ 
+    <!--==================================================================-->
+    <script src="{% static 'assets1/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets1/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets1/js/jquery-ui.js' %}"></script>
+    <script src="{% static 'assets1/js/plugin/apexcharts.js' %}"></script>
+    <script src="{% static 'assets1/js/plugin/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets1/js/plugin/waypoint.min.js' %}"></script>
+    <script src="{% static 'assets1/js/plugin/wow.min.js' %}"></script>
+    <script src="{% static 'assets1/js/plugin/plugin.js' %}"></script>
+    <script src="{% static 'assets1/js/main.js' %}"></script>
+</body>
+
+</html>
+
+
+    <!--==================================================================-->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery-ui.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/fontawesome.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/slick.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/counter.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/waypoint.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/plugin/plugin.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+</body>
+
+</html>
+    
+        <!-- <div class="counter-section">
+            <div class="container wow fadeInUp">
+                <div class="row cus-mar">
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">50</span><span>+</span></h2>
+                                <p>Supported Currencies</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">100</span><span>+</span></h2>
+                                <p>Available Countries</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">70</span><span>+</span></h2>
+                                <p>Payment Methods</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-md-3 col-sm-6">
+                        <div class="single-area d-flex align-items-center justify-content-center">
+                            <div class="text-area text-center">
+                                <h2><span class="counter">7</span><span>/</span><span class="counter">24</span><span>+</span></h2>
+                                <p>Support Team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+    </section>
+    <!-- Banner Section end -->
+
+    {% else %}
+   
+    <!-- Banner Section start -->
+ <section class="banner-section index">
+    <div class="overlay">
+        <div class="shape-area">
+            <img src="{% static 'assets/images/banner-box.png' %}" class="obj-1" alt="image">
+            <img src="{% static 'assets/images/banner-human.png' %}" class="obj-2" alt="image">
+            <img src="{% static 'assets/images/banner-rocket.png' %}" class="obj-3" alt="image">
+            <img src="{% static 'assets/images/banner-clock.png' %}" class="obj-4" alt="image">
+        </div>
+        <div class="banner-content">
+            <div class="container wow fadeInUp">
+                <div class="content-shape">
+                    <img src="{% static 'assets/images/banner-wallet.png' %}" class="obj-1" alt="image">
+                </div>
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-lg-5 col-md-6">
+                        <div class="main-content">
+                            <div class="top-area section-text">
+                                <h5 class="sub-title">Embraced by a vast and growing community of loyal users</h5>
+                                <h1 class="title">Remit and Exchange funds globally</h1>
+                                <p class="xlr">Effortlessly transfer, receive, and request, exchange funds online using Finstack. Obtain a tailored solution to suit your business requirements.</p>
+                            </div>
+                            <div class="bottom-area d-xxl-flex">
+                                <a href="{% url 'userauths:sign-up' %}" class="cmn-btn">Open a Free Account
+                                    <!-- <i class="fas fa-caret-right"></i> -->
+                                </a>
+                                <!-- <a href="sign-up.html" class="cmn-btn">Open a Free Account</a>  -->
+                                <!-- <a class="cmn-btn active mfp-iframe popupvideo" href="https://www.youtube.com/watch?v=Djz8Nc0Qxwk">See How it Works</a> -->
+                                <a class="cmn-btn active mfp-iframe" href="https://www.youtube.com/@FinstackHQ/featured">See How it Works</a>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                  
+                        
+                    <div class="col-xxl-4 col-xl-5 col-md-6">
+                        <div class="send-money">
+                              <!-- <form action="#"> -->
+                            
+                                <h4  class="single-area d-flex align-items-center justify-content-center">Convert</h4>
+                                
+                            <form method="post" action="#"> 
+                                {% csrf_token %}
+                                <!-- Amount input -->
+                                <div class="select-text">
+                                    <input  name="amount" type="text" value="0.00">
+                                </div>
+                                <br>
+                                <div class="select-wrapper">
+                                    <!-- From options -->
+                                 <div class="currency-area">
+                                    <div class="left-side">
+                                        <span class="mdr">You send</span>
+                                        <!-- <h5>1,000</h5> -->
+                                        <h6>
+                                          {{ amount }} {{ currency_from }}
+                                       </h6>
+                                    </div>
+                                    <div class="right-side">
+                                        <!-- <select>
+                                            <option value="1">USD</option>
+                                            <option value="2">GBP</option>
+                                            <option value="3">AUS</option>
+                                        </select> -->
+                                        <select name="currency_from" class="select">
+                                          {% for c in currency_data %}
+                                          <option value="{{c.cc}}">{{c.name}}</option>
+                                          {% endfor %}
+                                       </select>
+                                    </div>
+                                  </div>
+                                  <div class="calculation">
+                                    <div class="head-area">
+                                        <img src="{% static 'assets/images/icon/conversion.png' %}" alt="image">
+                                        <span class="mdr highlight">Show calculation</span>
+                                    </div>
+                                    <div class="calculation-details">
+                                        <div class="single-area d-flex align-items-center">
+                                            <div class="left-area">
+                                                <i class="fas fa-minus"></i>
+                                                <span class="mdr">FREE</span>
+                                            </div>
+                                            <div class="right-area">
+                                                <span class="mdr">Our fee</span>
+                                            </div>
+                                        </div>
+                                        <div class="single-area d-flex align-items-center">
+                                            <div class="left-area">
+                                                <i class="fas fa-equals"></i>
+                                                <span class="mdr">
+                                                   <!-- 989.96 USD -->
+                                                   {{ amount }} {{ currency_from }}
+                                                </span>
+                                            </div>
+                                            <div class="right-area">
+                                                <span class="mdr">We’ll Convert</span>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="single-area d-flex align-items-center">
+                                            <div class="left-area">
+                                                <i class="fas fa-times"></i>
+                                                <span class="mdr">1.3947</span>
+                                            </div>
+                                            <div class="right-area">
+                                                <span class="mdr highlight">Finstack Rate</span>
+                                            </div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                        
+                                <div class="currency-area">
+                                 <div class="left-side">
+                                     <span class="mdr">Recipient gets</span>
+                                     <!-- <h5>1,380.69</h5> -->
+                                     <h5>{{ result }} {{ currency_to }}</h5>
+                                 </div>
+                                 <div class="right-side recipient">
+                                     <select name="currency_to" class="select">
+                                       {% for c in currency_data %}
+                                       <option value="{{c.cc}}">{{c.name}}</option>
+                                       {% endfor %}
+                                    </select>
+                                 </div>
+                             </div>
+                         
+                                          </div>
+                                          <br> 
+                                         
+                                         <!-- <div class="btn-area mt-40">
+                                            <a href="{% url 'userauths:sign-in' %}" class="login cmn-btn w-100">CONVERT AND GET STARTED
+                                            </a>
+                                        </div> -->
+
+                                        <div class="select-submit">
+                                            <input class="cmn-btn w-100" type="submit" value="CONVERT">
+                                         </div>
+
+                               
+                            </form> 
+                        </div>
+                    </div>
+                
+
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="counter-section">
+        <div class="container wow fadeInUp">
+            <div class="row cus-mar">
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="single-area d-flex align-items-center justify-content-center">
+                        <div class="text-area text-center">
+                            <h2><span class="counter">50</span><span>+</span></h2>
+                            <p>Supported Currencies</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="single-area d-flex align-items-center justify-content-center">
+                        <div class="text-area text-center">
+                            <h2><span class="counter">100</span><span>+</span></h2>
+                            <p>Available Countries</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="single-area d-flex align-items-center justify-content-center">
+                        <div class="text-area text-center">
+                            <h2><span class="counter">70</span><span>+</span></h2>
+                            <p>Payment Methods</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-md-3 col-sm-6">
+                    <div class="single-area d-flex align-items-center justify-content-center">
+                        <div class="text-area text-center">
+                            <h2><span class="counter">7</span><span>/</span><span class="counter">24</span><span>+</span></h2>
+                            <p>Support Team</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Banner Section end -->
+
+<!-- Global Payment start -->
+<section class="global-payment">
+    <div class="overlay pt-120 pb-120">
+        <div class="container wow fadeInUp">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-header text-center">
+                        <h5 class="sub-title">Transfer funds in an instant</h5>
+                        <h2 class="title">The world within reach</h2>
+                        <p>Register to begin saving on global money transfers and currency exchange</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xxl-6 col-xl-5 order-xl-0 order-1">
+                    <div class="image-area d-rtl left-side">
+                        <img src="{% static 'assets/images/global-payment-img.png' %}" alt="images" class="max-un">
+                    </div>
+                </div>
+                <div class="col-xxl-6 col-xl-7">
+                    <div class="row cus-mar">
+                        <div class="col-sm-6 col-6">
+                            <div class="single-item">
+                                <img src="{% static 'assets/images/icon/global-payment-icon-1.png' %}" alt="icon">
+                                <h5>Peace of Mind</h5>
+                                <p>Enjoy instant peace of mind with secure and efficient global money transfers. Sign up now for worry-free transactions.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-6">
+                            <div class="single-item">
+                                <img src="{% static 'assets/images/icon/global-payment-icon-2.png' %}" alt="icon">
+                                <h5>Business-Ready</h5>
+                                <p>We're business-ready. Streamline your financial transactions with our efficient services. Sign up for hassle-free business solutions today.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-6">
+                            <div class="single-item">
+                                <img src="{% static 'assets/images/icon/global-payment-icon-3.png' %}" alt="icon">
+                                <h5>100% Transparent</h5>
+                                <p>We prioritize transparency. Experience 100% clarity in your financial transactions. Join us for a transparent and trustworthy journey.</p>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-6">
+                            <div class="single-item">
+                                <img src="{% static 'assets/images/icon/global-payment-icon-4.png' %}" alt="icon">
+                                <h5>International Network</h5>
+                                <p>Embrace a global presence. Join our international network for seamless connectivity. Expand your possibilities with us.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Global Payment end -->
+
+
+<!-- Our Solutions start -->
+<section class="our-solutions">
+    <div class="overlay pt-120 pb-120">
+        <div class="container wow fadeInUp">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-header dark-sec text-center">
+                        <h5 class="sub-title">High speeds. Low fees. No hassle.</h5>
+                        <h2 class="title">All Your Payments In One Place</h2>
+                        <p>Get used to low fees and great exchange rates on international money transfers.Expand your business worldwide</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row cus-mar">
+                <div class="col-xl-3 col-6">
+                    <div class="single-item">
+                        <img src="{% static 'assets/images/icon/our-solutions-icon-1.png' %}" alt="icon">
+                        <h5>Payments</h5>
+                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+                    </div>
+                </div>
+                <div class="col-xl-3 col-6">
+                    <div class="single-item">
+                        <img src="{% static 'assets/images/icon/our-solutions-icon-2.png' %}" alt="icon">
+                        <h5>Collections</h5>
+                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+                    </div>
+                </div>
+                <div class="col-xl-3 col-6">
+                    <div class="single-item">
+                        <img src="{% static 'assets/images/icon/our-solutions-icon-3.png' %}" alt="icon">
+                        <h5>Conversions</h5>
+                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+                    </div>
+                </div>
+                <div class="col-xl-3 col-6">
+                    <div class="single-item">
+                        <img src="{% static 'assets/images/icon/our-solutions-icon-4.png' %}" alt="icon">
+                        <h5>Global Account</h5>
+                        <!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Our Solutions end -->
+
+<!-- How it Works start -->
+<section class="how-it-works">
+    <div class="overlay pb-120">
+        <div class="container wow fadeInUp">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="section-header text-center">
+                        <h5 class="sub-title">How it works?</h5>
+                        <h2 class="title">Just few steps to start</h2>
+                        <p>It's easier than you think. Follow 3 simple easy steps</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row cus-mar">
+                <div class="col-xl-3 col-sm-6 col-6">
+                    <div class="single-item first text-center">
+                        <img src="{% static 'assets/images/icon/how-works-icon-1.png' %}" alt="icon">
+                        <h5>Register for free</h5>
+                        <p>Simply sign up online for free and verify your identity</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-6">
+                    <div class="single-item second text-center">
+                        <img src="{% static 'assets/images/icon/how-works-icon-2.png' %}" alt="icon">
+                        <h5>Set up your transfer</h5>
+                        <p>Add a recipient's details and choose which currency ...</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-6">
+                    <div class="single-item first text-center">
+                        <img src="{% static 'assets/images/icon/how-works-icon-3.png' %}" alt="icon">
+                        <h5>Make your payment</h5>
+                        <p>Send us your funds with a bank transfer and we'll notify..</p>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-sm-6 col-6">
+                    <div class="single-item text-center">
+                        <img src="{% static 'assets/images/icon/how-works-icon-4.png' %}" alt="icon">
+                        <h5>You're all done!</h5>
+                        <p>We inform you when the money has been sent and can also ...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- How it Works end -->
+
+<!-- App Download start -->
+<section class="app-download">
+    <div class="overlay pb-120">
+        <div class="container wow fadeInUp">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-lg-6 order-lg-0 order-1">
+                    <div class="image-area d-rtl left-side">
+                        <img src="{% static 'assets/images/app-download-img.png' %}" alt="images" class="max-un">
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="section-area">
+                        <h5 class="sub-title">App Download</h5>
+                        <h2 class="title">Fast, Secure Money Transfers</h2>
+                        <p>Access your account via your mobile phone. View balance, transfer funds, view transactions wherever you are.</p>
+                    </div>
+                    <ul class="features">
+                        <li>
+                            <img src="{% static 'assets/images/icon/check.png' %}" alt="icon"> Login with fingerprint or Face ID.
+                        </li>
+                        <li>
+                            <img src="{% static 'assets/images/icon/check.png' %}" alt="icon"> Simple few Taps to send money
+                        </li>
+                        <li>
+                            <img src="{% static 'assets/images/icon/check.png' %}" alt="icon"> View transaction history.
+                        </li>
+                        <li>
+                            <img src="{% static 'assets/images/icon/check.png' %}" alt="icon"> Get instant App notifications.
+                        </li>
+                    </ul>
+                    <div class="brand-area mt-40">
+                        <a href="javascript:void(0)">
+                            <img src="{% static 'assets/images/GooglePlay-btn.png' %}" alt="icon">
+                        </a>
+                        <a href="javascript:void(0)">
+                            <img src="{% static 'assets/images/apple-btn.png' %}" alt="icon">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- App Download end -->
+
+<!-- Testimonials start -->
+<section class="testimonials">
+    <div class="overlay pt-120 pb-120">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="section-header text-center">
+                        <h5 class="sub-title">Testimonials</h5>
+                        <h2 class="title">What Our Customers Say</h2>
+                        <!-- <p>245m+ happy clients all around the world. Don’t just take our word for it</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid wow fadeInUp">
+            <div class="testimonials-carousel">
+                <div class="single-slide">
+                    <div class="single-content">
+                        <div class="start-area">
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                        </div>
+                        <h5 class="title-area">Great Fast Reliable Service</h5>
+                        <p class="xlr">“As a small business owner, finding a reliable platform for currency exchange and cross-border payments was crucial for our growth. Finstack offered us competitive rates but also simplified the entire process.”</p>
+                        <div class="profile-area d-flex align-items-center">
+                            <div class="icon-area">
+                                <img src="{% static 'assets/images/testimonials-img-1.png' %}" alt="icon">
+                            </div>
+                            <div class="text-area">
+                                <h5>Aspen Press</h5>
+                                <p>Web Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slide">
+                    <div class="single-content">
+                        <div class="start-area">
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                        </div>
+                        <h5 class="title-area">Great Fast Reliable Service</h5>
+                        <p class="xlr">“Finstack’s transparency in exchange rates and low transaction fees are a refreshing change from traditional banking. This platform has significantly improved my overall experience with currency exchange and international payments. “</p>
+                        <div class="profile-area d-flex align-items-center">
+                            <div class="icon-area">
+                                <img src="{% static 'assets/images/testimonials-img-2.png' %}" alt="icon">
+                            </div>
+                            <div class="text-area">
+                                <h5>Courtney Henry</h5>
+                                <p>Balance Studio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slide">
+                    <div class="single-content">
+                        <div class="start-area">
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                        </div>
+                        <h5 class="title-area">Great Fast Reliable Service</h5>
+                        <p class="xlr">“Switching to Finstack has been a game-changer for my business. The seamless cross-border payment features have significantly improved our international transactions, saving us time and money.”</p>
+                        <div class="profile-area d-flex align-items-center">
+                            <div class="icon-area">
+                                <img src="{% static 'assets/images/testimonials-img-3.png' %}" alt="icon">
+                            </div>
+                            <div class="text-area">
+                                <h5>Paul Howell</h5>
+                                <p>President of Sales</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="single-slide">
+                    <div class="single-content">
+                        <div class="start-area">
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                            <a href="javascript:void(0)"><i class="fas fa-star"></i></a>
+                        </div>
+                        <h5 class="title-area">Great Fast Reliable Service</h5>
+                        <p class="xlr">“Finstack’s transparency in exchange rates and low transaction fees are a refreshing change from traditional banking. This platform has significantly improved my overall experience with currency exchange and international payments. “</p>
+                        <div class="profile-area d-flex align-items-center">
+                            <div class="icon-area">
+                                <img src="{% static 'assets/images/testimonials-img-2.png' %}" alt="icon">
+                            </div>
+                            <div class="text-area">
+                                <h5>Courtney Henry</h5>
+                                <p>Balance Studio</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- App Download end -->
+
+
+<!-- FAQs In start -->
+<section class="faqs-section">
+    <div class="overlay pt-120 pb-120">
+        <div class="container">
+            <div class="row d-flex justify-content-center">
+                <div class="col-lg-7">
+                    <div class="section-header text-center">
+                        <h5 class="sub-title">Frequently Asked Questions</h5>
+                        <h2 class="title">If you got questions we have answer</h2>
+                        <p>We have a list of frequently asked questions about us</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row cus-mar">
+                <div class="col-lg-6">
+                    <div class="accordion" id="accordionLeft">
+                        <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingLeftOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftOne" aria-expanded="false" aria-controls="collapseLeftOne">
+                                    How do I contact Finstack?
+                                </button>
+                            </h6>
+                            <div id="collapseLeftOne" class="accordion-collapse collapse" aria-labelledby="headingLeftOne" data-bs-parent="#accordionLeft">
+                                <div class="accordion-body">
+                                    <p>You can contact us via our contact page or easily send us a message on WhatsApp at +234 814 790 5150</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingLeftTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftTwo" aria-expanded="false" aria-controls="collapseLeftTwo">
+                                    How to Exchange/Send Money on Finstack?
+                                </button>
+                            </h6>
+                            <div id="collapseLeftTwo" class="accordion-collapse collapse" aria-labelledby="headingLeftTwo" data-bs-parent="#accordionLeft">
+                                <div class="accordion-body">
+           
+
+                                    <p> 1. Create an account.<br>
+                                        2. Complete the verification process.<br>
+                                        3. Select currency pairs.<br>
+                                        4. Initiate the payment.<br>
+                                        Provide the receiving account details, and your account will be credited.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingLeftThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftThree" aria-expanded="false" aria-controls="collapseLeftThree">
+                                    What Business Payment Solutions are Provided?
+                                </button>
+                            </h6>
+                            <div id="collapseLeftThree" class="accordion-collapse collapse" aria-labelledby="headingLeftThree" data-bs-parent="#accordionLeft">
+                                <div class="accordion-body">
+                                    <p>We can help facilitate cross-border payments, enabling you to receive money from other countries and making it easy for your customers to pay you. With the best rates available, you can expect to receive your money on the same day.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingLeftFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftFour" aria-expanded="false" aria-controls="collapseLeftFour">
+                                    Which currency can I send?
+                                </button>
+                            </h6>
+                            <div id="collapseLeftFour" class="accordion-collapse collapse" aria-labelledby="headingLeftFour" data-bs-parent="#accordionLeft">
+                                <div class="accordion-body">
+                                    <p>All supported currencies.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingLeftFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseLeftFive" aria-expanded="false" aria-controls="collapseLeftFive">
+                                    What are the fees for money transfers or currency exchange?
+                                </button>
+                            </h6>
+                            <div id="collapseLeftFive" class="accordion-collapse collapse" aria-labelledby="headingLeftFive" data-bs-parent="#accordionLeft">
+                                <div class="accordion-body">
+                                    <p>It’s free.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="accordion" id="accordionRight">
+                        <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingRightOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightOne" aria-expanded="false" aria-controls="collapseRightOne">
+                                    Which currency can I send?
+                                </button>
+                            </h6>
+                            <div id="collapseRightOne" class="accordion-collapse collapse" aria-labelledby="headingRightOne" data-bs-parent="#accordionRight">
+                                <div class="accordion-body">
+                                    <p>All supported currencies.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingRightTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightTwo" aria-expanded="false" aria-controls="collapseRightTwo">
+                                    What are the fees for money transfers or currency exchange?
+                                </button>
+                            </h6>
+                            <div id="collapseRightTwo" class="accordion-collapse collapse" aria-labelledby="headingRightTwo" data-bs-parent="#accordionRight">
+                                <div class="accordion-body">
+                                    <p>It’s free.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingRightThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightThree" aria-expanded="false" aria-controls="collapseRightThree">
+                                    Which currency can I send?
+                                </button>
+                            </h6>
+                            <div id="collapseRightThree" class="accordion-collapse collapse" aria-labelledby="headingRightThree" data-bs-parent="#accordionRight">
+                                <div class="accordion-body">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit posuere vel venenatis, eu sit massa. Volutpat massa rhoncus odio feugiat tellus elit massa sed ullamcorper a in.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingRightFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightFour" aria-expanded="false" aria-controls="collapseRightFour">
+                                    Cancel transaction
+                                </button>
+                            </h6>
+                            <div id="collapseRightFour" class="accordion-collapse collapse" aria-labelledby="headingRightFour" data-bs-parent="#accordionRight">
+                                <div class="accordion-body">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit posuere vel venenatis, eu sit massa. Volutpat massa rhoncus odio feugiat tellus elit massa sed ullamcorper a in.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                        <!-- <div class="accordion-item">
+                            <h6 class="accordion-header" id="headingRightFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRightFive" aria-expanded="false" aria-controls="collapseRightFive">
+                                    Can I send multiple payments?
+                                </button>
+                            </h6>
+                            <div id="collapseRightFive" class="accordion-collapse collapse" aria-labelledby="headingRightFive" data-bs-parent="#accordionRight">
+                                <div class="accordion-body">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipiscing elit posuere vel venenatis, eu sit massa. Volutpat massa rhoncus odio feugiat tellus elit massa sed ullamcorper a in.</p>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+
+                <!-- <div class="navbar-area d-flex align-items-center justify-content-center">
+                    
+                </div>  -->
+
+                <div class="bottom-area d-xxl-flex">
+                    <a href="https://web.facebook.com/finstacktech/" class="cmn-btn">Facebook</a> 
+                </div> 
+                <br><br>
+                <div class="bottom-area d-xxl-flex">
+                    <a class="cmn-btn" style="background-color: #55acee;" href="https://twitter.com/Finstack_HQ" role="button">
+                        <i class="fab fa-twitter me-2"></i> 
+                        Twitter</a>
+                </div> 
+                <br><br>
+                <div class="bottom-area d-xxl-flex">
+                        <a class="my-10 cmn-btn" style="background-color: black;" href="https://www.tiktok.com/@finstackhq" role="button">
+                        <svg width="40px" height="25px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <!-- <title>Tiktok</title> -->
+                            <g id="Icon/Social/tiktok-black" stroke="none" stroke-width="1" fill="white" fill-rule="evenodd">
+                                <path d="M38.0766847,15.8542954 C36.0693906,15.7935177 34.2504839,14.8341149 32.8791434,13.5466056 C32.1316475,12.8317108 31.540171,11.9694126 31.1415066,11.0151329 C30.7426093,10.0603874 30.5453728,9.03391952 30.5619062,8 L24.9731521,8 L24.9731521,28.8295196 C24.9731521,32.3434487 22.8773693,34.4182737 20.2765028,34.4182737 C19.6505623,34.4320127 19.0283477,34.3209362 18.4461858,34.0908659 C17.8640239,33.8612612 17.3337909,33.5175528 16.8862248,33.0797671 C16.4386588,32.6422142 16.0833071,32.1196657 15.8404292,31.5426268 C15.5977841,30.9658208 15.4727358,30.3459348 15.4727358,29.7202272 C15.4727358,29.0940539 15.5977841,28.4746337 15.8404292,27.8978277 C16.0833071,27.3207888 16.4386588,26.7980074 16.8862248,26.3604545 C17.3337909,25.9229017 17.8640239,25.5791933 18.4461858,25.3491229 C19.0283477,25.1192854 19.6505623,25.0084418 20.2765028,25.0219479 C20.7939283,25.0263724 21.3069293,25.1167239 21.794781,25.2902081 L21.794781,19.5985278 C21.2957518,19.4900128 20.7869423,19.436221 20.2765028,19.4380839 C18.2431278,19.4392483 16.2560928,20.0426009 14.5659604,21.1729264 C12.875828,22.303019 11.5587449,23.9090873 10.7814424,25.7878401 C10.003907,27.666593 9.80084889,29.7339663 10.1981162,31.7275214 C10.5953834,33.7217752 11.5748126,35.5530237 13.0129853,36.9904978 C14.4509252,38.4277391 16.2828722,39.4064696 18.277126,39.8028054 C20.2711469,40.1991413 22.3382874,39.9951517 24.2163416,39.2169177 C26.0948616,38.4384508 27.7002312,37.1209021 28.8296253,35.4300711 C29.9592522,33.7397058 30.5619062,31.7522051 30.5619062,29.7188301 L30.5619062,18.8324027 C32.7275484,20.3418321 35.3149087,21.0404263 38.0766847,21.0867664 L38.0766847,15.8542954 Z" id="Fill-1" fill="white"></path>
+                            </g>
+                        </svg>
+                        Tiktok</a>
+                </div> 
+                <br><br>
+                <div class="bottom-area d-xxl-flex">
+                    <a href="https://www.instagram.com/finstack_hq/" class="cmn-btn">Instagram</a> 
+                </div> 
+
+                <br><br>
+                <div class="bottom-area d-xxl-flex">
+                    <a href="https://www.youtube.com/@FinstackHQ/featured/" class="cmn-btn" style="background-color: red;"><i class="bi bi-youtube"></i>YouTube</a> 
+                </div> 
+                
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- FAQs In end -->
+
+    {% endif %}
+
+   
+
+
+    
+   
+
+
+
+
+
+
+
+
+
+
+
+   
+{% endblock content %}

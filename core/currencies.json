@@ -1,0 +1,8 @@
+ [
+    {"cc":"EUR","symbol":"\u20ac","name":"Euro"},
+    {"cc":"GBP","symbol":"\u00a3","name":"GBP"},
+    {"cc":"USD","symbol":"$","name":"USD"},
+    {"cc":"NGN","symbol":"N","name":"NGN"}
+  ]
+
+ 
